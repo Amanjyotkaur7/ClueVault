@@ -1,0 +1,116 @@
+/* src/styles/Dashboard.css */
+
+.vault-container {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);
+  animation: pulse 6s infinite ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#floating-blur {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  width: 300px;
+  height: 300px;
+  background: #a855f7;
+  opacity: 0.2;
+  filter: blur(120px);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  color: #eee;
+  transition: all 0.3s ease-in-out;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+thead {
+  background-color: rgba(31, 31, 31, 0.8);
+}
+
+tbody tr:hover {
+  background-color: rgba(168, 85, 247, 0.05);
+}
+
+select {
+  outline: none;
+}
+
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #9333ea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: #ccc;
+  }
+}

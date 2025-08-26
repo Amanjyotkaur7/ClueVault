@@ -1,0 +1,463 @@
+/* src/styles/VaultCard.css
+
+body {
+  background: #0f0f0f;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.vault-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  min-height: 100vh;
+  margin-top: 0;
+}
+
+.card-3d {
+  perspective: 1200px;
+  width: 360px;
+  max-width: 90%;
+  height: 520px;
+  position: relative;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s ease;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-3d.flipped .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card-3d.flipped .card-back {
+  transform: rotateY(0deg);
+}
+
+.title-glow {
+  font-size: 2rem;
+  color: #a855f7;
+  text-shadow: 0 0 15px #9333ea;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.vault-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.vault-form textarea,
+.vault-form input {
+  background: #1c1c1c;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.vault-form button {
+  background: #a855f7;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.vault-form button:hover {
+  background: #9333ea;
+  box-shadow: 0 0 10px #9333ea;
+}
+
+.result-text {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.copy-btn,
+.reset-btn {
+  background: #4ade80;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: black;
+  font-weight: bold;
+  border-radius: 6px;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.copy-btn:hover,
+.reset-btn:hover {
+  background: #22c55e;
+}
+
+.qr-section {
+  margin-top: 1rem;
+  background: #181818;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.user-info-glow {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  color: #f0f0f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(6px);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-info-glow span {
+  display: block;
+  margin: 2px 0;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border: 2px solid #9333ea;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.6);
+}
+
+.user-loading {
+  color: #ccc;
+  font-style: italic;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-45deg, #4e2020f4, #723a67, #360348, #141b43);
+  background-size: 400% 400%;
+  animation: gradientShift 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+#floating-blur {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  width: 350px;
+  height: 350px;
+  background: #9333ea;
+  filter: blur(120px);
+  opacity: 0.07;
+  border-radius: 50%;
+  animation: floatBlob 20s ease-in-out infinite alternate;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(120px, 80px); }
+  100% { transform: translate(0, 0); }
+}
+
+.vault-badge {
+  margin-top: 1rem;
+  margin-bottom: 0 rem;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  padding: 0.4rem 1.2rem;
+  border-radius: 10px;
+  font-family: monospace;
+  color: #dcdcdc;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vault-badge:hover {
+  background: rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+.vault-id {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.vault-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 2px;
+  color: #fff;
+}
+ */
+
+ /* src/styles/VaultCard.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* Container for VaultCard Section */
+.vault-section {
+  padding: 6rem 2rem;
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  scroll-margin-top: 100px;
+}
+
+.vault-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3D Card */
+.card-3d {
+  perspective: 1200px;
+  width: 360px;
+  height: 540px;
+  position: relative;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s ease;
+  backface-visibility: hidden;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.2rem;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-3d.flipped .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card-3d.flipped .card-back {
+  transform: rotateY(0deg);
+}
+
+/* Titles */
+.title-glow {
+  font-size: 2rem;
+  color: #a855f7;
+  text-shadow: 0 0 15px #9333ea;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Form */
+.vault-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.vault-form textarea,
+.vault-form input {
+  background: #1c1c1c;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.vault-form button {
+  background: #a855f7;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.vault-form button:hover {
+  background: #9333ea;
+  box-shadow: 0 0 10px #9333ea;
+}
+
+/* Back Side Content */
+.result-text {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.copy-btn,
+.reset-btn {
+  background: #4ade80;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: black;
+  font-weight: bold;
+  border-radius: 6px;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.copy-btn:hover,
+.reset-btn:hover {
+  background: #22c55e;
+}
+
+.qr-section {
+  margin-top: 1rem;
+  background: #181818;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* User Info Glow */
+.user-info-glow {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.user-info-glow span {
+  display: block;
+  margin: 2px 0;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border: 2px solid #9333ea;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.6);
+}
+
+/* Background */
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 30%, #1e1e1e, #303f3a 60%);
+  overflow: hidden;
+  z-index: -2;
+}
+
+#floating-blur {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  width: 350px;
+  height: 350px;
+  background: #9333ea;
+  filter: blur(120px);
+  opacity: 0.07;
+  border-radius: 50%;
+  animation: floatBlob 20s ease-in-out infinite alternate;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(120px, 80px); }
+  100% { transform: translate(0, 0); }
+}

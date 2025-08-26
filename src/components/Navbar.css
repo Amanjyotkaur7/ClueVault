@@ -1,0 +1,79 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111827;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo .logo-link {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #a855f7;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.navbar-logo .logo-link:hover {
+  color: #9333ea;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: #a855f7;
+  transition: width 0.3s;
+}
+
+.navbar-links li a:hover {
+  color: #a855f7;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}

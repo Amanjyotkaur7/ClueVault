@@ -1,0 +1,23 @@
+.footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #121212;
+  color: #999;
+}
+
+.footer .links {
+  margin: 0.5rem 0;
+}
+
+.footer .links a {
+  color: #a855f7;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.footer small {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #666;
+}

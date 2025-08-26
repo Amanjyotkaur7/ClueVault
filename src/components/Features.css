@@ -1,0 +1,44 @@
+.features-section {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: #1a1a1a;
+}
+
+.features-section h2 {
+  color: #f2f2f2;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #9333ea;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  background: #262626;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 250px;
+  transition: transform 0.3s;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
